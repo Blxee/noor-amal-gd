@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c20tbyx2s2fyr"]
+[gd_scene load_steps=4 format=3 uid="uid://c20tbyx2s2fyr"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_00wc4"]
+[ext_resource type="Texture2D" uid="uid://doredm6k8027b" path="res://assets/logo.png" id="2_pd6m1"]
+[ext_resource type="Texture2D" uid="uid://cuwl0mrl4jyx1" path="res://icon.svg" id="3_q1cxq"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -11,17 +13,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_00wc4")
 
-[node name="Button" type="Button" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -39.0
-offset_top = -26.5
-offset_right = 39.0
-offset_bottom = 26.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "do it"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_pd6m1")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_q1cxq")
+expand_mode = 3
+stretch_mode = 5
