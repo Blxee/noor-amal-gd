@@ -433,16 +433,3 @@ func _on_confirm_pressed():
 	final_date_data = global_date_data
 	date_picker_button.text = selected_date_label.text
 	date_picker_panel.visible = false
-
-
-
-
-
-
-
-
-
-
-
-
-
