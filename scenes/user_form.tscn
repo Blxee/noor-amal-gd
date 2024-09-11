@@ -1,0 +1,119 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4bhjd6uypn3k"]
+
+[ext_resource type="PackedScene" uid="uid://dubkw6fn2rh5c" path="res://addons/DatePickerFiles/CalendarPop/DatePickerPanel.tscn" id="1_u5dfp"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ycqvj"]
+color = Color(0, 0, 0, 0.392157)
+thickness = 5
+
+[node name="UserForm" type="PanelContainer"]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Add New User"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_ycqvj")
+
+[node name="FirstName" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/FirstName"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "First Name:"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/FirstName"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LastName" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/LastName"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Last Name:"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/LastName"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RegisterDate" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/RegisterDate"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Register Date:"
+
+[node name="DatePickerPanel" parent="VBoxContainer/RegisterDate" instance=ExtResource("1_u5dfp")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RegisterFee" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/RegisterFee"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Register Fee:"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/RegisterFee"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="AssuranceFee" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Label" type="Label" parent="VBoxContainer/AssuranceFee"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Assurance Fee:"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/AssuranceFee"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_ycqvj")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="Ok" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ok"
