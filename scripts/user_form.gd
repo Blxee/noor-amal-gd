@@ -15,6 +15,18 @@ var entry: Entry:
 		%AssuranceFeeCheckBox.button_pressed = entry.assurance
 
 
+func add_user() -> void:
+	entry = Entry.new()
+	show()
+	%Title.text = 'إضافة عضو جديد'
+
+
+func edit_user(entry: Entry) -> void:
+	self.entry = entry
+	show()
+	%Title.text = 'تعديل عضو'
+
+
 func _on_cancel_pressed() -> void:
 	hide()
 

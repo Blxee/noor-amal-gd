@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://c20tbyx2s2fyr"]
+[gd_scene load_steps=6 format=3 uid="uid://c20tbyx2s2fyr"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_00wc4"]
 [ext_resource type="Texture2D" uid="uid://doredm6k8027b" path="res://assets/logo.png" id="2_pd6m1"]
 [ext_resource type="PackedScene" uid="uid://ct7lp4yn7vbug" path="res://scenes/user_list_item.tscn" id="3_1r3uj"]
 [ext_resource type="PackedScene" uid="uid://b4bhjd6uypn3k" path="res://scenes/user_form.tscn" id="4_o44br"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8b61"]
+bg_color = Color(0.236116, 0.236116, 0.236116, 1)
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -40,15 +43,32 @@ offset_left = -84.0
 offset_top = -53.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "Add User"
+text = "عضو جديد"
 
-[node name="UserList" type="VBoxContainer" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_g8b61")
 
-[node name="UserListItem" parent="VBoxContainer/UserList" instance=ExtResource("3_1r3uj")]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="UserList" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UserListItem" parent="VBoxContainer/PanelContainer/MarginContainer/UserList" instance=ExtResource("3_1r3uj")]
+layout_mode = 2
+
+[node name="FirstName" parent="VBoxContainer/PanelContainer/MarginContainer/UserList/UserListItem" index="1"]
+text = "الإسم الشّخصي"
+
+[node name="LastName" parent="VBoxContainer/PanelContainer/MarginContainer/UserList/UserListItem" index="2"]
+text = "الإسم العائلي"
 
 [node name="UserForm" parent="." instance=ExtResource("4_o44br")]
 unique_name_in_owner = true
@@ -56,3 +76,5 @@ visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/TextureRect/AddUser" to="." method="_on_add_user_pressed"]
+
+[editable path="VBoxContainer/PanelContainer/MarginContainer/UserList/UserListItem"]

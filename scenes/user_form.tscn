@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4bhjd6uypn3k"]
+[gd_scene load_steps=5 format=3 uid="uid://b4bhjd6uypn3k"]
 
 [ext_resource type="PackedScene" uid="uid://dubkw6fn2rh5c" path="res://addons/DatePickerFiles/CalendarPop/DatePickerPanel.tscn" id="1_u5dfp"]
 [ext_resource type="Script" path="res://scripts/user_form.gd" id="1_y5fov"]
+[ext_resource type="Texture2D" uid="uid://b8di5yi580nui" path="res://assets/cancel.svg" id="2_6qrx3"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ycqvj"]
 color = Color(0, 0, 0, 0.392157)
@@ -40,15 +41,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Title" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 1
-text = "Add New User"
+text = "Add User"
 horizontal_alignment = 1
 
-[node name="Close" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Close" type="TextureButton" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 10
-text = "Close"
+texture_normal = ExtResource("2_6qrx3")
+texture_pressed = ExtResource("2_6qrx3")
+ignore_texture_size = true
+stretch_mode = 4
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -59,71 +65,80 @@ theme_override_styles/separator = SubResource("StyleBoxLine_ycqvj")
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/FirstName"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "First Name:"
-
 [node name="FirstNameEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/FirstName"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 2
+text_direction = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/FirstName"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "الإسم الشّخصي:"
+horizontal_alignment = 2
 
 [node name="LastName" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/LastName"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Last Name:"
-
 [node name="LastNameEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/LastName"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 2
+text_direction = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/LastName"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "الإسم العائلي:"
+horizontal_alignment = 2
 
 [node name="RegisterDate" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/RegisterDate"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Register Date:"
 
 [node name="RegisterDatePicker" parent="PanelContainer/VBoxContainer/RegisterDate" instance=ExtResource("1_u5dfp")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/RegisterDate"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "تاريخ التّسجيل:"
+horizontal_alignment = 2
+
 [node name="RegisterFee" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/RegisterFee"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Register Fee:"
-
 [node name="RegisterFeeCheckbox" type="CheckBox" parent="PanelContainer/VBoxContainer/RegisterFee"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/RegisterFee"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "مصاريف التّسجيل:"
+horizontal_alignment = 2
 
 [node name="AssuranceFee" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/AssuranceFee"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Assurance Fee:"
-
 [node name="AssuranceFeeCheckBox" type="CheckBox" parent="PanelContainer/VBoxContainer/AssuranceFee"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/AssuranceFee"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "مصاريف الضّمان (Assurance):"
+horizontal_alignment = 2
 
 [node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -141,12 +156,12 @@ layout_mode = 2
 [node name="Cancel" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Cancel"
+text = "إلغاء"
 
 [node name="Ok" type="Button" parent="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Ok"
+text = "تمّ"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_cancel_pressed"]

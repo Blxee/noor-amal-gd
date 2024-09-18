@@ -16,10 +16,8 @@ func _ready() -> void:
 
 
 func _on_add_user_pressed() -> void:
-	user_form.entry = Entry.new()
-	user_form.show()
+	user_form.add_user()
 
 
 func edit_user(entry: Entry) -> void:
-	user_form.entry = entry
-	user_form.show()
+	user_form.edit_user(entry)
