@@ -22,6 +22,6 @@ shadow_size = 16
 shadow_offset = Vector2(0, 8)
 
 [resource]
-default_font_size = 32
+default_font_size = 24
 Panel/styles/panel = SubResource("StyleBoxFlat_1xhfb")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_3pyjd")

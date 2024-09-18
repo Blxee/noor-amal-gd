@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c20tbyx2s2fyr"]
+[gd_scene load_steps=5 format=3 uid="uid://c20tbyx2s2fyr"]
 
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_00wc4"]
 [ext_resource type="Texture2D" uid="uid://doredm6k8027b" path="res://assets/logo.png" id="2_pd6m1"]
-[ext_resource type="Texture2D" uid="uid://cuwl0mrl4jyx1" path="res://icon.svg" id="3_q1cxq"]
+[ext_resource type="PackedScene" uid="uid://ct7lp4yn7vbug" path="res://scenes/user_list_item.tscn" id="3_1r3uj"]
+[ext_resource type="PackedScene" uid="uid://b4bhjd6uypn3k" path="res://scenes/user_form.tscn" id="4_o44br"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -28,19 +29,30 @@ texture = ExtResource("2_pd6m1")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+[node name="AddUser" type="Button" parent="VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.95
+anchor_top = 0.9
+anchor_right = 0.95
+anchor_bottom = 0.9
+offset_left = -84.0
+offset_top = -53.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Add User"
+
+[node name="UserList" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
+[node name="UserListItem" parent="VBoxContainer/UserList" instance=ExtResource("3_1r3uj")]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/PanelContainer"]
-layout_mode = 2
+[node name="UserForm" parent="." instance=ExtResource("4_o44br")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/PanelContainer/HBoxContainer"]
-layout_mode = 2
-texture = ExtResource("3_q1cxq")
-expand_mode = 3
-stretch_mode = 5
+[connection signal="pressed" from="VBoxContainer/TextureRect/AddUser" to="." method="_on_add_user_pressed"]

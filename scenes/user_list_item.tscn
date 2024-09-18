@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct7lp4yn7vbug"]
+
+[ext_resource type="Script" path="res://scripts/user_list_item.gd" id="1_luaf2"]
+[ext_resource type="Texture2D" uid="uid://c20vf5w4uyhcg" path="res://assets/profile.svg" id="1_pn3qc"]
+[ext_resource type="Texture2D" uid="uid://b8di5yi580nui" path="res://assets/cancel.svg" id="3_2efoj"]
+
+[node name="UserListItem" type="Panel"]
+custom_minimum_size = Vector2(0, 64)
+offset_right = 1080.0
+offset_bottom = 66.0
+script = ExtResource("1_luaf2")
+
+[node name="ProfilePicture" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.003
+anchor_top = 0.3
+anchor_right = 0.003
+anchor_bottom = 0.7
+offset_top = -17.0
+offset_right = 34.0
+offset_bottom = 17.0
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+texture = ExtResource("1_pn3qc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="FirstName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.3
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 1.0
+offset_bottom = 17.0
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+
+[node name="LastName" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 1.0
+offset_bottom = 17.0
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+
+[node name="Assurance" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.98
+anchor_top = 0.5
+anchor_right = 0.98
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -17.0
+offset_bottom = 17.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_2efoj")
+expand_mode = 2
+stretch_mode = 4
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

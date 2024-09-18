@@ -1,30 +1,44 @@
 extends Control
 
-var entry: Entry
+var database: DataBase
 
-
-func _ready() -> void:
-	%RegisterDatePicker
+var entry: Entry:
+	set(value):
+		entry = value
+		%FirstNameEdit.text = entry.first_name
+		%LastNameEdit.text = entry.last_name
+		#entry.date_register = Time.get_unix_time_from_datetime_dict(
+			#%RegisterDatePicker.get_date_data()
+		#)
+		#entry.last_payment = entry.date_register
+		%RegisterFeeCheckbox.button_pressed = entry.register_fee
+		%AssuranceFeeCheckBox.button_pressed = entry.assurance
 
 
 func _on_cancel_pressed() -> void:
-	queue_free()
+	hide()
 
 
 func _on_ok_pressed() -> void:
 	_save_entry()
-	queue_free()
+	hide()
 
 
 func _save_entry() -> void:
 	var entry: Entry = Entry.new()
+	
 	entry.first_name = %FirstNameEdit.text
 	entry.last_name = %LastNameEdit.text
 	entry.date_register = Time.get_unix_time_from_datetime_dict(
 		%RegisterDatePicker.get_date_data()
 	)
-	entry.assurance = %AssuranceFeeCheckBox
+	entry.last_payment = entry.date_register
+	entry.register_fee = %RegisterFeeCheckbox.button_pressed
+	entry.assurance = %AssuranceFeeCheckBox.button_pressed
+	
+	database.add_entry(entry)
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	_on_cancel_pressed()
+	if event is InputEventMouseButton and event.is_released():
+		_on_cancel_pressed()
