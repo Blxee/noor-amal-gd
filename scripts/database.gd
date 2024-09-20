@@ -1,6 +1,8 @@
 class_name DataBase
 extends Resource
 
+signal updated()
+
 const save_path: String = 'user://database.res'
 
 @export var table: Array[Entry] = []
@@ -8,6 +10,7 @@ const save_path: String = 'user://database.res'
 
 static func save_data(data_base: DataBase) -> void:
 	ResourceSaver.save(data_base, save_path)
+	data_base.updated.emit()
 
 
 static func load_data() -> DataBase:
@@ -21,3 +24,8 @@ func add_entry(entry: Entry) -> void:
 	if entry not in table:
 		table.append(entry)
 		save_data(self)
+
+
+func remove_entry(entry: Entry) -> void:
+	table.erase(entry)
+	save_data(self)

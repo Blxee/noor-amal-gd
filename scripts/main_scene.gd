@@ -7,8 +7,13 @@ var database: DataBase = DataBase.load_data()
 @onready var user_form: Control = %UserForm
 
 func _ready() -> void:
+	database.updated.connect(load_users)
 	user_form.database = database
-	
+	load_users()
+
+
+func load_users() -> void:
+	%UserList.get_children().slice(1).map(func(x): x.queue_free())
 	for entry in database.table:
 		var list_item = USER_LIST_ITEM.instantiate()
 		list_item.entry = entry

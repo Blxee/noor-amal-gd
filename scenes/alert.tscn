@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cf065r2h3hgcj"]
+[gd_scene load_steps=2 format=3 uid="uid://ccr801a5jomdx"]
 
-[ext_resource type="Script" path="res://scripts/alert.gd" id="1_a7l8h"]
+[sub_resource type="GDScript" id="GDScript_yt1pa"]
+script/source = "extends Control
+
+
+func _on_accept_button_pressed():
+	queue_free()
+
+
+func _on_cancel_button_pressed():
+	queue_free()
+"
 
 [node name="Alert" type="Control"]
 layout_mode = 3
@@ -9,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_a7l8h")
+script = SubResource("GDScript_yt1pa")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

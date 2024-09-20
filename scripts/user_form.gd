@@ -19,12 +19,21 @@ func add_user() -> void:
 	entry = Entry.new()
 	show()
 	%Title.text = 'إضافة عضو جديد'
+	%Actions.hide()
+	_on_edit_pressed()
 
 
 func edit_user(entry: Entry) -> void:
 	self.entry = entry
 	show()
 	%Title.text = 'تعديل عضو'
+	%Actions.show()
+	%FirstNameEdit.editable = false
+	%LastNameEdit.editable = false
+	%RegisterDatePicker
+	%RegisterFeeCheckbox.disabled = true
+	%AssuranceFeeCheckBox.disabled = true
+	%DateCover.show()
 
 
 func _on_cancel_pressed() -> void:
@@ -49,8 +58,30 @@ func _save_entry() -> void:
 	entry.assurance = %AssuranceFeeCheckBox.button_pressed
 	
 	database.add_entry(entry)
+	get_tree().get_root().add_child(Toast.create_toast('User Added successfully!'))
 
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_released():
 		_on_cancel_pressed()
+
+
+func _on_delete_pressed() -> void:
+	var prompt: Prompt = Prompt.create_prompt(
+		'You are about ot delete this user!\nAre you sure?',
+		false,
+		func():
+			database.remove_entry(entry)
+			get_tree().get_root().add_child(Toast.create_toast('User deleted successfully!'))
+			hide()
+	)
+	get_tree().get_root().add_child(prompt)
+
+
+func _on_edit_pressed() -> void:
+	%FirstNameEdit.editable = true
+	%LastNameEdit.editable = true
+	%RegisterDatePicker
+	%RegisterFeeCheckbox.disabled = false
+	%AssuranceFeeCheckBox.disabled = false
+	%DateCover.hide()

@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://xnhukktd5hph"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://xnhukktd5hph"]
+
+[ext_resource type="FontFile" uid="uid://bvk2x7xhkl5aj" path="res://assets/ReadexPro-VariableFont_HEXP,wght.ttf" id="1_pja66"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xhfb"]
 bg_color = Color(0.4029, 0.447525, 0.51, 1)
@@ -22,6 +24,7 @@ shadow_size = 16
 shadow_offset = Vector2(0, 8)
 
 [resource]
-default_font_size = 24
+default_font = ExtResource("1_pja66")
+default_font_size = 20
 Panel/styles/panel = SubResource("StyleBoxFlat_1xhfb")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_3pyjd")

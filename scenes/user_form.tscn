@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4bhjd6uypn3k"]
+[gd_scene load_steps=7 format=3 uid="uid://b4bhjd6uypn3k"]
 
 [ext_resource type="PackedScene" uid="uid://dubkw6fn2rh5c" path="res://addons/DatePickerFiles/CalendarPop/DatePickerPanel.tscn" id="1_u5dfp"]
 [ext_resource type="Script" path="res://scripts/user_form.gd" id="1_y5fov"]
+[ext_resource type="Texture2D" uid="uid://bg7lasqjlbc7j" path="res://assets/trash.svg" id="2_4xdmf"]
 [ext_resource type="Texture2D" uid="uid://b8di5yi580nui" path="res://assets/cancel.svg" id="2_6qrx3"]
+[ext_resource type="Texture2D" uid="uid://dktogpmoe6srn" path="res://assets/edit.svg" id="3_828qv"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_ycqvj"]
 color = Color(0, 0, 0, 0.392157)
@@ -36,13 +38,36 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="Control" type="Control" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Actions" type="HBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
+
+[node name="Delete" type="TextureButton" parent="PanelContainer/VBoxContainer/HBoxContainer/Actions"]
+modulate = Color(0.698039, 0, 0.313726, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("2_4xdmf")
+texture_pressed = ExtResource("2_4xdmf")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="Edit" type="TextureButton" parent="PanelContainer/VBoxContainer/HBoxContainer/Actions"]
+modulate = Color(0, 0.207843, 0.729412, 1)
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("3_828qv")
+texture_pressed = ExtResource("3_828qv")
+ignore_texture_size = true
+stretch_mode = 4
 
 [node name="Title" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 6
 size_flags_vertical = 1
 text = "Add User"
 horizontal_alignment = 1
@@ -50,7 +75,7 @@ horizontal_alignment = 1
 [node name="Close" type="TextureButton" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 8
 texture_normal = ExtResource("2_6qrx3")
 texture_pressed = ExtResource("2_6qrx3")
 ignore_texture_size = true
@@ -103,6 +128,12 @@ size_flags_vertical = 6
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="DateCover" type="ColorRect" parent="PanelContainer/VBoxContainer/RegisterDate/RegisterDatePicker"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+color = Color(0, 0, 0.313726, 0.215686)
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/RegisterDate"]
 layout_mode = 2
@@ -164,6 +195,8 @@ size_flags_horizontal = 3
 text = "تمّ"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Actions/Delete" to="." method="_on_delete_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Actions/Edit" to="." method="_on_edit_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/Ok" to="." method="_on_ok_pressed"]
