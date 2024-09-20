@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct7lp4yn7vbug"]
+[gd_scene load_steps=5 format=3 uid="uid://ct7lp4yn7vbug"]
 
 [ext_resource type="Script" path="res://scripts/user_list_item.gd" id="1_luaf2"]
 [ext_resource type="Texture2D" uid="uid://c20vf5w4uyhcg" path="res://assets/profile.svg" id="1_pn3qc"]
 [ext_resource type="Texture2D" uid="uid://b8di5yi580nui" path="res://assets/cancel.svg" id="3_2efoj"]
+[ext_resource type="Texture2D" uid="uid://gvesyl0dyg1b" path="res://assets/chevron.svg" id="3_j6clv"]
 
 [node name="UserListItem" type="Panel"]
 custom_minimum_size = Vector2(0, 64)
@@ -42,6 +43,7 @@ offset_bottom = 17.0
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 1
+text = "First Name"
 
 [node name="LastName" type="Label" parent="."]
 unique_name_in_owner = true
@@ -57,6 +59,29 @@ offset_bottom = 17.0
 grow_vertical = 2
 size_flags_horizontal = 4
 mouse_filter = 1
+text = "Last Name"
+
+[node name="Payment" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+modulate = Color(0.96, 0.1728, 0.34336, 1)
+layout_mode = 0
+offset_left = 906.0
+offset_top = 20.0
+offset_right = 963.0
+offset_bottom = 45.0
+alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Texture" type="TextureRect" parent="Payment"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("3_j6clv")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Month" type="Label" parent="Payment"]
+layout_mode = 2
+text = "4"
 
 [node name="Assurance" type="TextureRect" parent="."]
 unique_name_in_owner = true
