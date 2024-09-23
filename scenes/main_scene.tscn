@@ -66,18 +66,17 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="UserList" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="UserList" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="UserListItem" parent="VBoxContainer/PanelContainer/MarginContainer/UserList" instance=ExtResource("3_1r3uj")]
+[node name="UserListItem" parent="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/UserList" instance=ExtResource("3_1r3uj")]
 layout_mode = 2
-
-[node name="FirstName" parent="VBoxContainer/PanelContainer/MarginContainer/UserList/UserListItem" index="1"]
-text = "الإسم الشّخصي"
-
-[node name="LastName" parent="VBoxContainer/PanelContainer/MarginContainer/UserList/UserListItem" index="2"]
-text = "الإسم العائلي"
 
 [node name="UserForm" parent="." instance=ExtResource("4_o44br")]
 unique_name_in_owner = true
@@ -86,4 +85,4 @@ layout_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/TextureRect/AddUser" to="." method="_on_add_user_pressed"]
 
-[editable path="VBoxContainer/PanelContainer/MarginContainer/UserList/UserListItem"]
+[editable path="VBoxContainer/PanelContainer/MarginContainer/ScrollContainer/UserList/UserListItem"]

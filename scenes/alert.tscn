@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://ccr801a5jomdx"]
+[gd_scene load_steps=2 format=3 uid="uid://mggpthyma04w"]
 
 [sub_resource type="GDScript" id="GDScript_yt1pa"]
 script/source = "extends Control
@@ -53,15 +53,15 @@ text = "content"
 layout_mode = 2
 alignment = 1
 
-[node name="AcceptButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Ok"
-
 [node name="CancelButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
-text = "Cancel"
+text = "لا"
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/AcceptButton" to="." method="_on_accept_button_pressed"]
+[node name="AcceptButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "نعم"
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/AcceptButton" to="." method="_on_accept_button_pressed"]

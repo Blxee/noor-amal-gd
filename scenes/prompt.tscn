@@ -16,9 +16,9 @@ script = ExtResource("1_wxwic")
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.2
+anchor_left = 0.25
 anchor_top = 0.5
-anchor_right = 0.8
+anchor_right = 0.75
 anchor_bottom = 0.5
 offset_top = -6.5
 offset_bottom = 6.5
@@ -48,18 +48,18 @@ autowrap_mode = 3
 layout_mode = 2
 alignment = 1
 
-[node name="OK" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 6
-text = "Ok"
-
 [node name="Cancel" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
-text = "Cancel"
+text = "لا"
+
+[node name="OK" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+text = "نعم"
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_ok_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OK" to="." method="_on_ok_pressed"]

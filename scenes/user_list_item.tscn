@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct7lp4yn7vbug"]
+[gd_scene load_steps=6 format=3 uid="uid://ct7lp4yn7vbug"]
 
 [ext_resource type="Script" path="res://scripts/user_list_item.gd" id="1_luaf2"]
 [ext_resource type="Texture2D" uid="uid://c20vf5w4uyhcg" path="res://assets/profile.svg" id="1_pn3qc"]
 [ext_resource type="Texture2D" uid="uid://b8di5yi580nui" path="res://assets/cancel.svg" id="3_2efoj"]
 [ext_resource type="Texture2D" uid="uid://gvesyl0dyg1b" path="res://assets/chevron.svg" id="3_j6clv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10tkb"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.153965, 0.180138, 0.355205, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="UserListItem" type="Panel"]
 custom_minimum_size = Vector2(0, 64)
@@ -11,92 +20,84 @@ offset_right = 1080.0
 offset_bottom = 66.0
 script = ExtResource("1_luaf2")
 
-[node name="ProfilePicture" type="TextureRect" parent="."]
-unique_name_in_owner = true
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.003
-anchor_top = 0.3
-anchor_right = 0.003
-anchor_bottom = 0.7
-offset_top = -17.0
-offset_right = 34.0
-offset_bottom = 17.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_stretch_ratio = 0.0
+
+[node name="ProfilePicture" type="TextureRect" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
 texture = ExtResource("1_pn3qc")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="FirstName" type="Label" parent="."]
+[node name="FirstName" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.5
-anchor_right = 0.3
-anchor_bottom = 0.5
-offset_top = -17.0
-offset_right = 1.0
-offset_bottom = 17.0
-grow_vertical = 2
-size_flags_horizontal = 4
+layout_mode = 2
+size_flags_horizontal = 6
 mouse_filter = 1
 text = "First Name"
 
-[node name="LastName" type="Label" parent="."]
+[node name="LastName" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.7
-anchor_top = 0.5
-anchor_right = 0.7
-anchor_bottom = 0.5
-offset_top = -17.0
-offset_right = 1.0
-offset_bottom = 17.0
-grow_vertical = 2
-size_flags_horizontal = 4
+layout_mode = 2
+size_flags_horizontal = 6
 mouse_filter = 1
 text = "Last Name"
 
-[node name="Payment" type="HBoxContainer" parent="."]
+[node name="Registration" type="Label" parent="HBoxContainer"]
 unique_name_in_owner = true
-modulate = Color(0.96, 0.1728, 0.34336, 1)
-layout_mode = 0
-offset_left = 906.0
-offset_top = 20.0
-offset_right = 963.0
-offset_bottom = 45.0
+layout_mode = 2
+size_flags_horizontal = 6
+mouse_filter = 1
+text = "Registration"
+
+[node name="PaymentContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/PaymentContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_10tkb")
+
+[node name="Payment" type="HBoxContainer" parent="HBoxContainer/PaymentContainer/PanelContainer"]
+unique_name_in_owner = true
+modulate = Color(1, 0.14902, 0.219608, 1)
+layout_mode = 2
 alignment = 1
 metadata/_edit_group_ = true
 
-[node name="Texture" type="TextureRect" parent="Payment"]
+[node name="Texture" type="TextureRect" parent="HBoxContainer/PaymentContainer/PanelContainer/Payment"]
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("3_j6clv")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Month" type="Label" parent="Payment"]
+[node name="Month" type="Label" parent="HBoxContainer/PaymentContainer/PanelContainer/Payment"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 28
 text = "4"
 
-[node name="Assurance" type="TextureRect" parent="."]
+[node name="AssuranceContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Assurance" type="TextureRect" parent="HBoxContainer/AssuranceContainer"]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.98
-anchor_top = 0.5
-anchor_right = 0.98
-anchor_bottom = 0.5
-offset_left = -34.0
-offset_top = -17.0
-offset_bottom = 17.0
-grow_horizontal = 0
-grow_vertical = 2
-size_flags_horizontal = 4
+layout_mode = 2
 texture = ExtResource("3_2efoj")
 expand_mode = 2
 stretch_mode = 4
