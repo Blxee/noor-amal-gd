@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func load_users() -> void:
-	%UserList.get_children().slice(1).map(func(x): x.queue_free())
+	%UserList.get_children().map(func(x): x.queue_free())
 	for entry in database.table:
 		var list_item = USER_LIST_ITEM.instantiate()
 		list_item.entry = entry

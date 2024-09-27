@@ -1,35 +1,36 @@
 extends Control
 
+enum State { NEW, EDIT }
 const CANCEL = preload("res://assets/cancel.svg")
 const CHECK = preload("res://assets/check.svg")
 const CHEVRON = preload("res://assets/chevron.svg")
 
 var database: DataBase
+var state: State
 
 var entry: Entry:
 	set(value):
 		entry = value
 		%FirstNameEdit.text = entry.first_name
 		%LastNameEdit.text = entry.last_name
-		#entry.date_register = Time.get_unix_time_from_date_dict(
-			#%RegisterDatePicker.get_date_data()
-		#)
-		#entry.last_payment = entry.date_register
 		%RegisterFeeCheckbox.button_pressed = entry.register_fee
 		%AssuranceFeeCheckBox.button_pressed = entry.assurance
 		_update_data()
 
 
 func add_user() -> void:
+	state = State.NEW
 	entry = Entry.new()
 	show()
 	%Title.text = 'إضافة عضو جديد'
 	%Actions.hide()
 	$PanelContainer/VBoxContainer/FieldsForm/Payment.hide()
+	%DateCover.hide()
 	_on_edit_pressed()
 
 
 func edit_user(entry: Entry) -> void:
+	state = State.EDIT
 	self.entry = entry
 	show()
 	%Title.text = 'تعديل عضو'
@@ -50,22 +51,30 @@ func _on_cancel_pressed() -> void:
 func _on_ok_pressed() -> void:
 	_save_entry()
 	hide()
+	get_tree().get_root().add_child(Toast.create_toast(
+		'تمت اضافة عضو بنجاح!'
+		if state == State.NEW else 
+		'تم تعديل عضو بنجاح!'
+	))
 
 
 func _save_entry() -> void:
-	var entry: Entry = Entry.new()
-	
+	if state == State.NEW:
+		var entry: Entry = Entry.new()
 	entry.first_name = %FirstNameEdit.text
 	entry.last_name = %LastNameEdit.text
-	entry.date_register = Time.get_unix_time_from_datetime_dict(
-		%RegisterDatePicker.get_date_data()
-	)
-	entry.last_payment = entry.date_register
+	if state == State.NEW:
+		entry.date_register = Time.get_unix_time_from_datetime_dict(
+			%RegisterDatePicker.get_date_data()
+		)
+		entry.last_payment = entry.date_register
 	entry.register_fee = %RegisterFeeCheckbox.button_pressed
 	entry.assurance = %AssuranceFeeCheckBox.button_pressed
 	
-	database.add_entry(entry)
-	get_tree().get_root().add_child(Toast.create_toast('تمت اضافة عضو بنجاح!'))
+	if state == State.NEW:
+		database.add_entry(entry)
+	else:
+		DataBase.save_data(database)
 
 
 func _on_gui_input(event: InputEvent) -> void:
@@ -88,10 +97,8 @@ func _on_delete_pressed() -> void:
 func _on_edit_pressed() -> void:
 	%FirstNameEdit.editable = true
 	%LastNameEdit.editable = true
-	%RegisterDatePicker
 	%RegisterFeeCheckbox.disabled = false
 	%AssuranceFeeCheckBox.disabled = false
-	%DateCover.hide()
 
 
 func _on_pay_month_pressed() -> void:

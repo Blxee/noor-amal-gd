@@ -13,13 +13,19 @@ config_version=5
 config/name="Noor Amal"
 run/main_scene="res://scenes/main_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://assets/icon.png"
+config/windows_native_icon="res://assets/icon.ico"
 
 [display]
 
 window/size/viewport_width=1080
 window/size/viewport_height=720
+window/size/mode=2
 
 [gui]
 
 theme/custom="res://resources/main_theme.tres"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
