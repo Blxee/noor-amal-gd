@@ -44,6 +44,5 @@ func _update_data() -> void:
 			%Payment/Texture.flip_v = false
 
 
-func _on_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
-		get_node('/root/MainScene').edit_user(entry)
+func _on_pressed() -> void:
+	get_node('/root/MainScene').edit_user(entry)

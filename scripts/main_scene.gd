@@ -14,10 +14,15 @@ func _ready() -> void:
 
 func load_users() -> void:
 	%UserList.get_children().map(func(x): x.queue_free())
-	for entry in database.table:
-		var list_item = USER_LIST_ITEM.instantiate()
-		list_item.entry = entry
-		%UserList.add_child(list_item)
+	for i in 10:
+		for entry in database.table:
+			var list_item = USER_LIST_ITEM.instantiate()
+			list_item.entry = entry
+			%UserList.add_child(list_item)
+			var sep := HSeparator.new()
+			sep.modulate = Color.TRANSPARENT
+			sep.custom_minimum_size.y = 16
+			%UserList.add_child(sep)
 
 
 func _on_add_user_pressed() -> void:
